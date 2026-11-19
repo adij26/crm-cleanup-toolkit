@@ -1,0 +1,57 @@
+# Lead scoring rules.
+# Copy this file, change the numbers, and pass it with --config to fit your
+# own ideal customer profile. The defaults are tuned for a B2B finance-software
+# company selling into the Office of the CFO.
+
+[weights.seniority]
+"C-Level" = 30
+"VP" = 25
+"Director" = 20
+"Manager" = 12
+"Individual Contributor" = 6
+"Entry" = 2
+"Unknown" = 0
+
+[weights.function]
+"Finance" = 25
+"Executive" = 20
+"Operations" = 15
+"Technology" = 8
+"Sales" = 4
+"Marketing" = 4
+"Other" = 0
+
+[company_size]
+# [min employees, max employees, points]
+bands = [
+  [1, 10, 2],
+  [11, 50, 6],
+  [51, 200, 12],
+  [201, 1000, 15],
+  [1001, 1000000000, 10],
+]
+
+[engagement]
+points_per_email_open = 1
+max_email_points = 10
+points_per_page_view = 0.5
+max_page_view_points = 10
+# [active within N days, points]
+recency = [
+  [14, 10],
+  [30, 7],
+  [90, 3],
+]
+
+[penalties]
+personal_email = -5
+role_based_email = -10
+disposable_email = -25
+invalid_email = -30
+missing_email = -30
+
+[grades]
+A = 70
+B = 50
+C = 30
+D = 0
